@@ -15,5 +15,5 @@ if __name__ == '__main__':
         (r'/hook', HookHandler)
     ])
 
-    application.listen(8089)
+    application.listen(8089, address="0.0.0.0")
     tornado.ioloop.IOLoop.current().start()
