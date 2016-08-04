@@ -18,6 +18,6 @@ def build(branch, username, email, repository):
         origin = repo.remotes['origin']
         origin.pull()
     else:
-        repo = Repo.clone_from(repository, 'd:\\tmp\\taxi', branch='master')
+        Repo.clone_from(repository, 'd:\\tmp\\taxi', branch='master')
 
     print(branch, username, email, repository)
