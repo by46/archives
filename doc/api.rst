@@ -4,6 +4,6 @@ API
 utils
 ---------
 
-.. automodule:: archives.utils
+.. automodule:: archives.task
     :members:
     :undoc-members:
