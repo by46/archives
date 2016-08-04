@@ -1,12 +1,14 @@
 from __future__ import print_function
 
 import os
+import shutil
 import tempfile
 from urlparse import urlparse
 
-from fabric.api import cd
+from fabric.api import lcd
 from fabric.api import local
 from git import Repo
+
 from archives import app
 from archives import celery
 
@@ -16,14 +18,26 @@ def ensure_dir(path):
         os.makedirs(path)
 
 
-def build_workspace(repository):
+def ensure_parent_dir(path):
+    parent = os.path.dirname(path)
+    ensure_dir(parent)
+
+
+def parse_group_project(repository):
     opt = urlparse(repository)
     parts = opt.path.split('/')
     group = parts[-2]
     project_slug = parts[-1]
     project_slug = project_slug.split('.')[0]
+    return group, project_slug
 
-    tmp_dir = os.path.join(tempfile.gettempdir(), app.import_name, group.lower(), project_slug.lower())
+
+def build_workspace(repository):
+    group, project_slug = parse_group_project(repository)
+    sys_temp_dir = tempfile.gettempdir()
+    # TODO(benjamin): remove debugging code
+    sys_temp_dir = 'd:\\tmp\\benjamn'
+    tmp_dir = os.path.join(sys_temp_dir, app.import_name, group.lower(), project_slug.lower())
     ensure_dir(tmp_dir)
     return os.path.join(tmp_dir, 'git')
 
@@ -40,6 +54,15 @@ def build(branch, username, email, repository):
 
     doc_path = os.path.join(workspace, 'doc')
     if os.path.exists(doc_path):
-        with cd(doc_path):
-            local('make html')
-    print(branch, username, email, repository)
+        with lcd(doc_path):
+            try:
+                local('make html')
+                group, project_slug = parse_group_project(repository)
+                nginx_doc_path = os.path.join(app.config['DOC_HOME'], group.lower(), project_slug.lower(), 'html')
+                if os.path.isdir(nginx_doc_path):
+                    shutil.rmtree(nginx_doc_path)
+                ensure_parent_dir(nginx_doc_path)
+                shutil.copytree(os.path.join(doc_path, '_build', 'html'), nginx_doc_path)
+            except Exception as e:
+                # TODO(benjamin): send notice send to user_name with user_email
+                raise e

@@ -8,3 +8,6 @@ BUILD_BRANCH = 'master'
 CELERY_BROKER_URL = 'redis://localhost:6379'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 
+# NGINX
+DOC_HOME = '/opt/data'
+

@@ -13,6 +13,8 @@ json object. The :func:`json.loads` function return dict object which represent 
 think the ``[key]`` operator, especially the json object contains hierarchical project.
 So, SimpleKit provides some simple and brief way which operate the object object.
 
+it's debugging
+
 User's Guide
 ==============
 
