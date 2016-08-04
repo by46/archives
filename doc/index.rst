@@ -14,6 +14,7 @@ think the ``[key]`` operator, especially the json object contains hierarchical p
 So, SimpleKit provides some simple and brief way which operate the object object.
 
 it's debugging
+it's debugging
 
 User's Guide
 ==============

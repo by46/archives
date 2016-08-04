@@ -1,6 +1,7 @@
 from __future__ import print_function
 
 import os
+import re
 import shutil
 import tempfile
 from urlparse import urlparse
@@ -11,6 +12,21 @@ from git import Repo
 
 from archives import app
 from archives import celery
+
+_RE_VERSION = "^\s*version\s*=\s*[\"']\s*(.*)[\"'].*"
+
+
+def find_version():
+    home = os.path.join(__file__, '..', '..', 'doc', 'conf.py')
+    version = '0.0.1'
+    if os.path.exists(home):
+        with open(home, 'rb') as f:
+            for line in f:
+                match = re.match(_RE_VERSION, line)
+                if match:
+                    version, = match.groups()
+
+    return version
 
 
 def ensure_dir(path):
@@ -58,11 +74,13 @@ def build(branch, username, email, repository):
             try:
                 local('make html')
                 group, project_slug = parse_group_project(repository)
-                nginx_doc_path = os.path.join(app.config['DOC_HOME'], group.lower(), project_slug.lower(), 'html')
-                if os.path.isdir(nginx_doc_path):
-                    shutil.rmtree(nginx_doc_path)
-                ensure_parent_dir(nginx_doc_path)
-                shutil.copytree(os.path.join(doc_path, '_build', 'html'), nginx_doc_path)
+                versions = [find_version(), 'latest']
+                for version in versions:
+                    nginx_doc_path = os.path.join(app.config['DOC_HOME'], group.lower(), project_slug.lower(), version)
+                    if os.path.isdir(nginx_doc_path):
+                        shutil.rmtree(nginx_doc_path)
+                    ensure_parent_dir(nginx_doc_path)
+                    shutil.copytree(os.path.join(doc_path, '_build', 'html'), nginx_doc_path)
             except Exception as e:
                 # TODO(benjamin): send notice send to user_name with user_email
                 raise e
