@@ -15,6 +15,8 @@ def build(branch, username, email, repository):
     workspace = build_workspace(repository)
     if os.path.exists(workspace):
         repo = Repo(workspace)
+        origin = repo.remotes['origin']
+        origin.pull()
     else:
         repo = Repo.clone_from(repository, 'd:\\tmp\\taxi', branch='master')
 
