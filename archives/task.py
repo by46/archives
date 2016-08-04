@@ -4,8 +4,9 @@ import os
 import tempfile
 from urlparse import urlparse
 
+from fabric.api import cd
+from fabric.api import local
 from git import Repo
-
 from archives import app
 from archives import celery
 
@@ -37,4 +38,8 @@ def build(branch, username, email, repository):
     else:
         Repo.clone_from(repository, workspace, branch='master')
 
+    doc_path = os.path.join(workspace, 'doc')
+    if os.path.exists(doc_path):
+        with cd(doc_path):
+            local('make html')
     print(branch, username, email, repository)

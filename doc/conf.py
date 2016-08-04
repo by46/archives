@@ -18,8 +18,6 @@
 # sys.path.insert(0, os.path.abspath('.'))
 
 # deal with sys.path
-import sys
-from os.path import dirname, join
 
 # simplekit = dirname(dirname(__file__))
 # sys.path.append(simplekit)
