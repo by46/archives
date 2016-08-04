@@ -16,6 +16,12 @@ if __name__ == '__main__':
     # $(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
     # sphinx-build -b html -d _build/doctrees . _build/html
 
+    import git
+
+    repo = git.Repo.clone_from("http://trgit2/by46/taxi.git", 'd:\\tmp\\taxi', branch='master')
+    heads = repo.heads
+    print heads
+
     doc = os.path.dirname(__file__)
     cmd = environments.BuildCommand("sphinx-build -b html -d _build/doctrees . _build/html".split(),
                                     cwd=os.path.join(doc, 'docs'))
