@@ -1,15 +1,9 @@
 API
 =====
 
-objson
+utils
 ---------
 
-.. automodule:: objson
+.. automodule:: archives.utils
     :members:
     :undoc-members:
-
-config
----------
-
-.. automodule:: config
-    :members:
