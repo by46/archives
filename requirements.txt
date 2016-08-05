@@ -2,4 +2,3 @@ Flask
 gevent
 celery
 gitpython
-Fabric
