@@ -1,0 +1,9 @@
+{
+  "name": "archives",
+  "image": "docker.neg/dfis_python_supervisor:0.0.1",
+  "tag": "0.0.1",
+  "port": [8080],
+  "env": {"ENV": "development"},
+  "volume": [],
+  "cmd": ["supervisord", "--configuration", "/opt/biz/supervisord.conf"]
+}
