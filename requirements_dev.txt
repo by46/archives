@@ -4,3 +4,4 @@ celery
 gitpython
 Fabric
 jsonschema
+redis
