@@ -2,3 +2,5 @@ Flask
 gevent
 celery
 gitpython
+Fabric
+jsonschema

@@ -4,6 +4,6 @@
   "tag": "0.0.1",
   "port": [8080],
   "env": {"ENV": "development"},
-  "volume": [],
+  "volume": ["/opt/data"],
   "cmd": ["supervisord", "--configuration", "/opt/biz/supervisord.conf"]
 }

@@ -52,7 +52,7 @@ def build_workspace(repository):
     group, project_slug = parse_group_project(repository)
     sys_temp_dir = tempfile.gettempdir()
     # TODO(benjamin): remove debugging code
-    sys_temp_dir = 'd:\\tmp\\benjamn'
+    # sys_temp_dir = 'd:\\tmp\\benjamn'
     tmp_dir = os.path.join(sys_temp_dir, app.import_name, group.lower(), project_slug.lower())
     ensure_dir(tmp_dir)
     return os.path.join(tmp_dir, 'git')
