@@ -16,6 +16,12 @@ from archives import celery
 _RE_VERSION = "^\s*version\s*=\s*[\"']\s*(.*)[\"'].*"
 
 
+# TODO(benjamin): remove this code in matrix
+def rebuild_repository(repository):
+    opt = urlparse(repository)
+    return '{0}://10.16.77.53{1}'.format(opt.scheme, opt.path)
+
+
 def find_version():
     home = os.path.join(__file__, '..', '..', 'doc', 'conf.py')
     version = '0.0.1'
@@ -66,7 +72,7 @@ def build(branch, username, email, repository):
         origin = repo.remotes['origin']
         origin.pull()
     else:
-        Repo.clone_from(repository, workspace, branch='master')
+        Repo.clone_from(rebuild_repository(repository), workspace, branch='master')
 
     doc_path = os.path.join(workspace, 'doc')
     if os.path.exists(doc_path):
