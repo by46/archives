@@ -2,13 +2,13 @@
 
 """
 
+import logging
 import os
 
 from celery import Celery
 from flask import Flask
 
 app = Flask(__name__)
-
 
 __version__ = '0.0.1'
 __author__ = 'benjamin.c.yan'
@@ -41,7 +41,8 @@ env = os.environ.get(key)
 app.config.from_object('config.{0}'.format(env.lower()))
 app.config['VERSION'] = __version__
 
-celery = make_celery(app)
+app.logger.setLevel(logging.DEBUG)
 
+celery = make_celery(app)
 
 from archives import views
