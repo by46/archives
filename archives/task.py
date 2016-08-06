@@ -31,6 +31,7 @@ def find_version():
                 match = re.match(_RE_VERSION, line)
                 if match:
                     version, = match.groups()
+                    break
 
     return version
 
