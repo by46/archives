@@ -66,16 +66,16 @@ def build_workspace(repository):
 
 @celery.task
 def build(branch, username, email, repository):
-    app.logger.info('start %s, %s %s on branch %s', repository, username, email, branch)
+    app.logger.info('Building %s, %s %s on branch %s', repository, username, email, branch)
     workspace = build_workspace(repository)
     app.logger.info('on workspace %s', workspace)
     if os.path.exists(workspace):
-        app.logger.info('fetch project')
+        app.logger.info('Fetch project')
         repo = Repo(workspace)
         origin = repo.remotes['origin']
         origin.pull()
     else:
-        app.logger.info('clone project')
+        app.logger.info('Clone project')
         Repo.clone_from(rebuild_repository(repository), workspace, branch='master')
 
     doc_path = os.path.join(workspace, 'doc')
