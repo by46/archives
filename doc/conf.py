@@ -35,8 +35,7 @@
 
 
 extensions = [
-    'sphinx.ext.autodoc',
-    'sphinx.ext.intersphinx'
+    'sphinx.ext.autodoc'
 ]
 
 
@@ -55,9 +54,9 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'simplekit'
-copyright = u'2015, benjamin yan'
-author = u'benjamin yan'
+project = u'Archives'
+copyright = u'2016, Newegg.inc'
+author = u'Newegg.inc'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
