@@ -7,7 +7,7 @@ from archives import app
 from archives import task
 
 
-@app.route('/hook', methods=['POST'])
+@app.route('/archives/hook', methods=['POST'])
 def hook():
     if not request.is_json:
         abort(httplib.BAD_REQUEST)

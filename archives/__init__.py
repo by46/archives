@@ -8,7 +8,7 @@ import os
 from celery import Celery
 from flask import Flask
 
-app = Flask(__name__)
+app = Flask(__name__, root_path='/archives')
 
 __version__ = '0.0.1'
 __author__ = 'benjamin.c.yan'
@@ -46,3 +46,4 @@ app.logger.setLevel(logging.DEBUG)
 celery = make_celery(app)
 
 from archives import views
+print app.url_map
