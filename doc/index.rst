@@ -24,13 +24,6 @@ This part of document is introduce what's is SimpleKit and who to use it.
 .. toctree::
    :maxdepth: 2
 
-   install
-   objson
-   config
-   api
-
-
-
 
 Indices and tables
 ==================
