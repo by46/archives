@@ -22,11 +22,10 @@ def rebuild_repository(repository):
     return '{0}://10.16.77.53{1}'.format(opt.scheme, opt.path)
 
 
-def find_version():
-    home = os.path.join(__file__, '..', '..', 'doc', 'conf.py')
+def find_version(conf_path):
     version = '0.0.1'
-    if os.path.exists(home):
-        with open(home, 'rb') as f:
+    if os.path.exists(conf_path):
+        with open(conf_path, 'rb') as f:
             for line in f:
                 match = re.match(_RE_VERSION, line)
                 if match:
@@ -86,7 +85,7 @@ def build(branch, username, email, repository):
             try:
                 local('make html')
                 group, project_slug = parse_group_project(repository)
-                versions = [find_version(), 'latest']
+                versions = [find_version(os.path.join(doc_path, 'conf.py')), 'latest']
                 for version in versions:
                     nginx_doc_path = os.path.join(app.config['DOC_HOME'], group.lower(), project_slug.lower(), version)
                     if os.path.isdir(nginx_doc_path):

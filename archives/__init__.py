@@ -8,7 +8,7 @@ import os
 from celery import Celery
 from flask import Flask
 
-app = Flask(__name__, root_path='/archives')
+app = Flask(__name__)
 
 __version__ = '0.0.1'
 __author__ = 'benjamin.c.yan'
