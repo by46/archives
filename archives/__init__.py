@@ -1,17 +1,18 @@
 """Archives
 
 """
-
-import logging
 import os
 
 from celery import Celery
+from flask import Blueprint
 from flask import Flask
-
-app = Flask(__name__)
+from flask_log import Log
 
 __version__ = '0.0.1'
 __author__ = 'benjamin.c.yan'
+
+app = Flask(__name__)
+bp = Blueprint('archives', __name__, url_prefix='/docs', static_folder='static')
 
 
 def make_celery(app):
@@ -39,11 +40,15 @@ if key not in os.environ:
 
 env = os.environ.get(key)
 app.config.from_object('config.{0}'.format(env.lower()))
-app.config['VERSION'] = __version__
 
-app.logger.setLevel(logging.DEBUG)
+app.config['VERSION'] = __version__
 
 celery = make_celery(app)
 
 from archives import views
+
+app.register_blueprint(bp)
+
+# Config logger
+Log(app)
 print app.url_map

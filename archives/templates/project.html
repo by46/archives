@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <title>Archives</title>
+
+    <link rel="stylesheet" href="{{ url_for('archives.static', filename='alabaster.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ url_for('archives.static', filename='pygments.css') }}" type="text/css"/>
+    <link rel="top" title="recipe 1 documentation" href="#"/>
+    <link rel="next" title="Quick Start" href="#"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9"/>
+
+</head>
+<body role="document">
+
+
+<div class="document">
+    <div class="documentwrapper">
+        <div class="bodywrapper">
+            <div class="body" role="main">
+
+                <div class="section" id="welcome-to-recipe-s-documentation">
+                    <h1>Welcome to {{project.name|capitalize}}</h1>
+                    <p>Available Versions Documents:</p>
+                    <div class="toctree-wrapper compound">
+                        <ul>
+                            {% for version in versions %}
+                            <li class="toctree-l1"><a class="reference internal"
+                                                      href="/docs/{{project.user|lower}}/{{project.name|lower}}/{{version}}/index.html">{{version|capitalize}}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="#">Table Of Contents</a></h3>
+            <ul>
+                <li><a class="reference internal" href="#">Welcome to Recipe&#8217;s documentation!</a></li>
+                <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+            </ul>
+            <div class="relations">
+                <h3>Related Topics</h3>
+                <ul>
+                    <li><a href="#">Documentation overview</a>
+                        <ul>
+                            <li>Next: <a href="tutor.html" title="next chapter">Quick Start</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="clearer"></div>
+</div>
+<div class="footer">
+    &copy;2016, dfis.
+
+    |
+    Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+    &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+</div>
+
+
+</body>
+</html>
