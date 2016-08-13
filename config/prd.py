@@ -10,3 +10,7 @@ DOC_HOME = '/opt/data'
 LOG_LEVEL = 'debug'
 LOG_FILENAME = "/var/archives/error.log"
 LOG_ENABLE_CONSOLE = False
+
+# REDIS Settings
+REDIS_HOST = '10.16.78.86'
+REDIS_PORT = 6382

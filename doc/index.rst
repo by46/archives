@@ -24,6 +24,9 @@ This part of document is introduce what's is SimpleKit and who to use it.
 .. toctree::
    :maxdepth: 2
 
+   tutor
+   redis
+
 
 Indices and tables
 ==================

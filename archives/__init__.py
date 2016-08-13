@@ -52,3 +52,4 @@ app.register_blueprint(bp)
 # Config logger
 Log(app)
 print app.url_map
+from archives.db import DataAccess

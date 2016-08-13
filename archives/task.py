@@ -12,6 +12,7 @@ from git import Repo
 
 from archives import app
 from archives import celery
+from archives.db import DataAccess
 
 _RE_VERSION = "^\s*version\s*=\s*[\"']\s*(.*)[\"'].*"
 
@@ -58,7 +59,7 @@ def build_workspace(repository):
     group, project_slug = parse_group_project(repository)
     sys_temp_dir = tempfile.gettempdir()
     # TODO(benjamin): remove debugging code
-    # sys_temp_dir = 'd:\\tmp\\benjamn'
+    sys_temp_dir = 'd:\\tmp\\benjamn'
     tmp_dir = os.path.join(sys_temp_dir, app.import_name, group.lower(), project_slug.lower())
     ensure_dir(tmp_dir)
     return os.path.join(tmp_dir, 'git')
@@ -92,6 +93,8 @@ def build(branch, username, email, repository):
                         shutil.rmtree(nginx_doc_path)
                     ensure_parent_dir(nginx_doc_path)
                     shutil.copytree(os.path.join(doc_path, '_build', 'html'), nginx_doc_path)
+                with app.app_context():
+                    DataAccess.add_project(group, project_slug, versions[0])
             except Exception as e:
                 # TODO(benjamin): send notice send to user_name with user_email
                 app.logger.exception(e)
