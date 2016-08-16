@@ -3,35 +3,27 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Simple Kit
+Welcome to Archives
 ========================
+Archives是一个文档自动构建及托管项目， 用于快速编写和维护项目文档。
 
-The SimpleKit is a collection of utility function for Python, include some mostly useful
-function. Python provide some useful packages and modules, but some of those is too
-complicated to used. for example,  the package :mod:`json` is used to serialize and deserialize
-json object. The :func:`json.loads` function return dict object which represent the json object, I
-think the ``[key]`` operator, especially the json object contains hierarchical project.
-So, SimpleKit provides some simple and brief way which operate the object object.
+解放文档编辑者，让使用者关注的重心放在项目本身，不用担心文档的生成，托管。只要你在master分支提交你的代码，
+就会自动生成文档到我们的托管仓库中，帮您集中管理文档。
 
-it's debugging
-it's debugging
+集中管理文档，以前你可能苦于在各处找你想要的文档，没有规范的管理。现在archives生成的文档，会放在我们的托管仓库进行统一管理，
+规范的目录结构会让你快速找到各个版本的文档
+
+
 
 User's Guide
 ==============
 
-This part of document is introduce what's is SimpleKit and who to use it.
+contents:
 
 .. toctree::
    :maxdepth: 2
 
    tutor
    redis
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   introduce
 
