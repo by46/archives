@@ -16,5 +16,5 @@ Usage
 
 .. figure:: _static/pic/hookurl.PNG
 
-2.如果有代码提交到master，就会触发构建文档，我们就可以通过 `http://scmesos06/docs/`_. 就可以访问文档啦
+2.如果有代码提交到master，就会触发构建文档，我们就可以通过 `http://scmesos06/docs/ <http://scmesos06/docs/>`_. 就可以访问文档啦
 
