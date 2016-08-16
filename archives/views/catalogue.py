@@ -6,9 +6,8 @@ from archives.db import DataAccess
 
 @bp.route('/')
 def catalogue():
-    projects = [{'user': 'dfis', 'name': 'Recipe'},
-                {'user': 'DFIS', 'name': 'Archives'}]
     projects = DataAccess.get_projects()
+    projects = sorted(projects, key=lambda item: item['name'])
     return render_template('catalogue.html', projects=projects)
 
 
