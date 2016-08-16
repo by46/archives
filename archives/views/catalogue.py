@@ -12,7 +12,7 @@ def catalogue():
     return render_template('catalogue.html', projects=projects)
 
 
-@bp.route('/<user>/<name>')
+@bp.route('/<user>/<name>/')
 def project(user=None, name=None):
     doc = {'user': user, 'name': name}
     versions = DataAccess.get_versions(user, name)
