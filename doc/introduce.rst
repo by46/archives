@@ -3,7 +3,7 @@ introduce
 主要介绍Archives所需要的doc目录
 
 docs
-`````````
+``````````
 .. figure:: _static/pic/doc.PNG
 
 这是archives所需要的doc目录结构，建议使用recipe模板生成项目结构，因为recipe将会帮您创建好这一目录，你只需要关心如何写代码，
