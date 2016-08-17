@@ -14,15 +14,16 @@ def hook():
 
     info = request.get_json()
     ref = info.get('ref')
+    branch = app.config.get('BUILD_BRANCH').lower()
 
     # TODO(benjamin): filter branch
-    if ref != 'refs/heads/master':
+    if ref != 'refs/heads/{0}'.format(branch):
         return "Not Changed"
 
     repository = info.get('repository').get('git_http_url')
     user_name = info.get('user_name')
     user_email = info.get('user_email')
 
-    task.build.delay(app.config.get('BUILD_BRANCH'), user_name, user_email, repository)
+    task.build.delay(branch, user_name, user_email, repository)
 
     return "Success"

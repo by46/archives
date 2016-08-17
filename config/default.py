@@ -1,7 +1,7 @@
 HTTP_HOST = ''
 HTTP_PORT = 8080
 
-BUILD_BRANCH = 'master'
+BUILD_BRANCH = 'feature-doc'
 
 # Celery settings
 CELERY_BROKER_URL = 'redis://10.16.78.86:6379'
