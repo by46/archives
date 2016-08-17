@@ -74,10 +74,10 @@ def build(branch, username, email, repository):
         app.logger.info('Fetch project')
         repo = Repo(workspace)
         origin = repo.remotes['origin']
-        origin.pull()
+        origin.pull('refs/heads/{0}:refs/heads/origin'.format(branch))
     else:
         app.logger.info('Clone project')
-        Repo.clone_from(rebuild_repository(repository), workspace, branch='master')
+        Repo.clone_from(rebuild_repository(repository), workspace, branch=branch)
 
     doc_path = os.path.join(workspace, 'doc')
     if os.path.exists(doc_path):
